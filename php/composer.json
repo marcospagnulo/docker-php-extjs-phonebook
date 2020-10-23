@@ -1,0 +1,23 @@
+{
+  "name": "raffolab/phonebook-api",
+  "description": "Phonebook api",
+  "homepage": "https://github.com/marcospagnulo/docker-extjs-php-phonebook",
+  "type": "project",
+  "require": {
+
+  },
+  "config": {
+    "secure-http": false,
+    "platform": {
+      "php": "7.1"
+    }
+  },
+  "repositories": [
+
+  ],
+  "autoload": {
+    "psr-4": {
+      "Raffolab\\": "src/"
+    }
+  }
+}
