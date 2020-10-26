@@ -4,7 +4,8 @@
   "homepage": "https://github.com/marcospagnulo/docker-extjs-php-phonebook",
   "type": "project",
   "require": {
-
+    "doctrine/orm": "^2.6.2",
+    "symfony/yaml": "2.*"
   },
   "config": {
     "secure-http": false,
@@ -17,7 +18,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "Raffolab\\": "src/"
+      "Phonebook\\App\\": "app/",
+      "Phonebook\\Service\\": "service/"
     }
   }
 }
