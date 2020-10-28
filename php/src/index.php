@@ -316,4 +316,4 @@ switch (ENVIRONMENT)
  */
 require_once BASEPATH.'core/CodeIgniter.php';
 
-require_once __DIR__ . '/Service/bootstrap.php';
+require_once __DIR__ . '/Service/DoctrineBootstrap.php';

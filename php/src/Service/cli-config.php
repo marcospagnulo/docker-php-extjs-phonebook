@@ -1,5 +1,7 @@
 <?php
 // cli-config.php
-require_once "bootstrap.php";
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Phonebook\Service\DoctrineBootstrap;
 
-return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
+$entityManager = DoctrineBootstrap::getEntityManager();
+return ConsoleRunner::createHelperSet($entityManager);
