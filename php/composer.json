@@ -18,8 +18,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Phonebook\\App\\": "app/",
-      "Phonebook\\Service\\": "service/"
+      "Phonebook\\": "/app"
     }
   }
 }

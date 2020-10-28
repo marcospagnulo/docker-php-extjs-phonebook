@@ -1,10 +1,13 @@
 <?php
+use Phonebook\Service\Repository\UserRepository;
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Phonebook</title>
 
 	<style type="text/css">
 
@@ -29,7 +32,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<?php
-	phpinfo();
+        $userRepo = new UserRepository();
+        $userRepo->test();
 	?>
 
 </div>

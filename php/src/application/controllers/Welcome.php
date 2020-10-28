@@ -1,7 +1,5 @@
 <?php
 
-use Phonebook\Service\UserRepository;
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
@@ -23,8 +21,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$userRepo = new UserRepository();
-		$userRepo->test();
 		$this->load->view('welcome_message');
 	}
 }

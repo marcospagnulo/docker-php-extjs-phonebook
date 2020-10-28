@@ -7,8 +7,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./php/app:/app
-      - ./php/service:/service
+      - ./php/src:/app
       - ./php/vendor:/vendor
       - ./docker-php-ext-xdebug.ini/:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
   db:
