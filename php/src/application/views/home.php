@@ -1,6 +1,5 @@
 <?php
-use Phonebook\Service\Repository\UserRepository;
-defined('BASEPATH') OR exit('No direct script access allowed');
+    defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <body>
 
         <div id="container">
-
+            Welcome! <?php echo $user->name ?>
+            <?php echo form_open('auth/logout'); ?>
+                <div><input type="submit" value="Submit" /></div>
+            </form>
         </div>
 
     </body>

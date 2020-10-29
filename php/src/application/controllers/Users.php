@@ -1,9 +1,14 @@
 <?php
-
+/**
+ * Rest api for user entity
+ */
 use Phonebook\Service\Repository\UserRepository;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Class Users
+ */
 class Users extends CI_Controller {
 
     /**
@@ -12,6 +17,7 @@ class Users extends CI_Controller {
     private $repository;
 
     public function __construct() {
+        parent::__construct();
         return $this->repository = new UserRepository();
     }
 

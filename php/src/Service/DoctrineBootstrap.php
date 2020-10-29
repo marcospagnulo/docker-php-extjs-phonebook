@@ -34,7 +34,7 @@ class DoctrineBootstrap {
         // database configuration parameters
         $conn = array(
             'driver'   => 'pdo_mysql',
-            'host'     => '172.20.0.4',
+            'host'     => '172.20.0.1',
             'dbname'   => 'phonebook',
             'user'     => 'root',
             'password' => 'example'
