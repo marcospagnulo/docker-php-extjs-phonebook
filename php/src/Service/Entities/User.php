@@ -43,6 +43,23 @@ class User implements JsonSerializable {
     protected $password;
 
     /**
+     * User constructor.
+     *
+     * @param int    $id       Id
+     * @param string $name     Name
+     * @param string $surname  Surname
+     * @param string $email    Email
+     * @param string $password Password
+     */
+    public function __construct($id, $name, $surname, $email, $password) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->surname = $surname;
+        $this->email = $email;
+        $this->password = $password;
+    }
+
+    /**
      * @return int
      */
     public function getId() {

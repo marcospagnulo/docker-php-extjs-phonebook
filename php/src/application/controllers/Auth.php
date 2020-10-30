@@ -20,13 +20,13 @@ class Auth extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('authModel');
+        $this->lang->load(['common', 'login', 'home']);
     }
 
     /**
      * Check if user is logged
      */
 	public function index() {
-
         if ($this->authModel->isUserLogged()) {
             $this->load->view('home', ['user' => $this->authModel->getCurrentUser()]);
         } else {

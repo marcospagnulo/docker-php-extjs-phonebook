@@ -11,15 +11,15 @@ use Phonebook\Service\Entities\User;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-$user = new User();
-$user->setName('Administrator');
-$user->setSurname('');
-$user->setEmail('admin@localhost.it');
-$user->setPassword('admin');
+$admin = new User();
+$admin->setName('Administrator');
+$admin->setSurname('');
+$admin->setEmail('admin@localhost.it');
+$admin->setPassword('admin');
 
 try {
     $entityManager = DoctrineBootstrap::getEntityManager();
-    $entityManager->persist($user);
+    $entityManager->persist($admin);
     $entityManager->flush();
 } catch (OptimisticLockException $e) {
     echo 'An error has occured:'.$e->getMessage();
@@ -27,4 +27,4 @@ try {
     echo 'An error has occured:'.$e->getMessage();
 }
 
-echo "Created Admin user with ID " . $user->getId() . "\n";
+echo "Created Admin user with ID " . $admin->getId() . "\n";
