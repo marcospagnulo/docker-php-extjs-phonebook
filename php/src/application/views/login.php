@@ -9,6 +9,25 @@
         <title>Phonebook</title>
 
         <style type="text/css">
+            #container{
+                margin: 0 auto;
+                width: 300px;
+            }
+            h5 {
+                text-align: center;
+                margin: 10px 0;
+            }
+            input {
+                width: 100%;
+            }
+            input[type="submit"] {
+                width: auto;
+                margin: 15px auto;
+                display: block;
+            }
+            .error {
+                color: red;
+            }
         </style>
     </head>
 
@@ -16,17 +35,24 @@
 
         <div id="container">
 
-            <?php echo validation_errors(); ?>
+            <div class="error">
+                <?php
+                    echo validation_errors();
+                    if(isset($error)){
+                        echo $error;
+                    }
+                 ?>
+            </div>
 
             <?php echo form_open('auth/login'); ?>
 
                 <h5><?php echo $this->lang->line('email')?></h5>
-                <input type="text" name="email" value="<?php echo set_value('email'); ?>" size="50" />
+                <input type="text" name="email" value="<?php echo set_value('email'); ?>" />
 
                 <h5><?php echo $this->lang->line('password')?></h5>
-                <input type="text" name="password" value="<?php echo set_value('password'); ?>" size="50" />
+                <input type="text" name="password" value="<?php echo set_value('password'); ?>"  />
 
-                <div><input type="submit" value="<?php echo $this->lang->line('login')?>" /></div>
+                <input type="submit" value="<?php echo $this->lang->line('login')?>" />
 
             <?php form_close() ?>
         </div>
