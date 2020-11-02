@@ -1,3 +1,5 @@
 .idea
 vendor
-php/src/application/logs/
+php/src/ci/application/logs/
+
+php/logs/

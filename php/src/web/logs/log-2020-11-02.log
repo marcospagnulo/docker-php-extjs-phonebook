@@ -1,0 +1,53 @@
+INFO - 2020-11-02 07:57:33 --> Config Class Initialized
+INFO - 2020-11-02 07:57:33 --> Hooks Class Initialized
+DEBUG - 2020-11-02 07:57:33 --> UTF-8 Support Enabled
+INFO - 2020-11-02 07:57:33 --> Utf8 Class Initialized
+INFO - 2020-11-02 07:57:33 --> URI Class Initialized
+INFO - 2020-11-02 07:57:33 --> Router Class Initialized
+INFO - 2020-11-02 07:57:33 --> Output Class Initialized
+INFO - 2020-11-02 07:57:33 --> Security Class Initialized
+DEBUG - 2020-11-02 07:57:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-11-02 07:57:33 --> Input Class Initialized
+INFO - 2020-11-02 07:57:33 --> Language Class Initialized
+INFO - 2020-11-02 07:57:33 --> Loader Class Initialized
+INFO - 2020-11-02 07:57:33 --> Controller Class Initialized
+INFO - 2020-11-02 07:57:33 --> Session: Class initialized using 'files' driver.
+INFO - 2020-11-02 07:57:33 --> Helper loaded: form_helper
+INFO - 2020-11-02 07:57:33 --> Form Validation Class Initialized
+INFO - 2020-11-02 07:57:33 --> Database Driver Class Initialized
+INFO - 2020-11-02 07:57:33 --> Model "AuthModel" initialized
+INFO - 2020-11-02 07:57:33 --> Language file loaded: language/english/common_lang.php
+INFO - 2020-11-02 07:57:33 --> Language file loaded: language/english/login_lang.php
+INFO - 2020-11-02 07:57:33 --> Language file loaded: language/english/home_lang.php
+INFO - 2020-11-02 07:57:33 --> Language file loaded: language/english/error_lang.php
+INFO - 2020-11-02 07:57:33 --> File loaded: /app/web/views/login.php
+INFO - 2020-11-02 07:57:33 --> Final output sent to browser
+DEBUG - 2020-11-02 07:57:33 --> Total execution time: 0.0159
+INFO - 2020-11-02 07:57:35 --> Config Class Initialized
+INFO - 2020-11-02 07:57:35 --> Hooks Class Initialized
+DEBUG - 2020-11-02 07:57:35 --> UTF-8 Support Enabled
+INFO - 2020-11-02 07:57:35 --> Utf8 Class Initialized
+INFO - 2020-11-02 07:57:35 --> URI Class Initialized
+INFO - 2020-11-02 07:57:35 --> Router Class Initialized
+INFO - 2020-11-02 07:57:35 --> Output Class Initialized
+INFO - 2020-11-02 07:57:35 --> Security Class Initialized
+DEBUG - 2020-11-02 07:57:35 --> Global POST, GET and COOKIE data sanitized
+INFO - 2020-11-02 07:57:35 --> Input Class Initialized
+INFO - 2020-11-02 07:57:35 --> Language Class Initialized
+INFO - 2020-11-02 07:57:35 --> Loader Class Initialized
+INFO - 2020-11-02 07:57:35 --> Controller Class Initialized
+INFO - 2020-11-02 07:57:35 --> Session: Class initialized using 'files' driver.
+INFO - 2020-11-02 07:57:35 --> Helper loaded: form_helper
+INFO - 2020-11-02 07:57:35 --> Form Validation Class Initialized
+INFO - 2020-11-02 07:57:35 --> Database Driver Class Initialized
+INFO - 2020-11-02 07:57:35 --> Model "AuthModel" initialized
+INFO - 2020-11-02 07:57:35 --> Language file loaded: language/english/common_lang.php
+INFO - 2020-11-02 07:57:35 --> Language file loaded: language/english/login_lang.php
+INFO - 2020-11-02 07:57:35 --> Language file loaded: language/english/home_lang.php
+INFO - 2020-11-02 07:57:35 --> Language file loaded: language/english/error_lang.php
+INFO - 2020-11-02 07:57:35 --> Helper loaded: url_helper
+DEBUG - 2020-11-02 07:57:35 --> Form_validation class already loaded. Second attempt ignored.
+INFO - 2020-11-02 07:57:35 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2020-11-02 07:57:35 --> File loaded: /app/web/views/login.php
+INFO - 2020-11-02 07:57:35 --> Final output sent to browser
+DEBUG - 2020-11-02 07:57:35 --> Total execution time: 0.0235
