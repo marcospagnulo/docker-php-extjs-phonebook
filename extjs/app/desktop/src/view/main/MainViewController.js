@@ -79,8 +79,8 @@ Ext.define('extjs.view.main.MainViewController', {
 		}
 	},
 
-	onBottomViewlogout: function () {
-		localStorage.setItem("LoggedIn", false);
+	onLogout: function () {
+		localStorage.removeItem("logged");
 		this.getView().destroy();
 		Ext.Viewport.add([{ xtype: 'loginview'}]);
 	}

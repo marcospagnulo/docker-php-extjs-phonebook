@@ -3,3 +3,5 @@ vendor
 php/src/ci/application/logs/
 
 php/logs/
+
+php/src/logs/

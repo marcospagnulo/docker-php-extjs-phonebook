@@ -18,7 +18,7 @@ class Users extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        return $this->repository = new UserRepository();
+        $this->repository = new UserRepository();
     }
 
     /**
@@ -28,5 +28,27 @@ class Users extends CI_Controller {
         header('Content-Type: application/json');
         $users = $this->repository->findAll();
         echo json_encode($users);
+    }
+
+    public function login(){
+
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: *');
+
+        if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
+            http_response_code(200);
+            return;
+        }
+
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $user = $this->repository->findByEmailAndPassword($email, $password);
+
+        if($user){
+            header('Content-Type: application/json');
+            echo json_encode($user);
+        } else {
+            http_response_code(401);
+        }
     }
 }

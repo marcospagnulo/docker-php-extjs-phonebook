@@ -16,5 +16,19 @@ Ext.define('extjs.view.main.nav.NavView', {
             }
         }
     ],
-    bbar: {xtype: 'bottomview', bind: {height: '{bottomview_height}'}}
+    bbar: {
+        xtype: 'bottomview', 
+        bind: {height: '{bottomview_height}'},
+        items : [
+            {
+                xtype: 'button',
+                text: 'Logout',
+                bind: {width: '100%'}, 
+                iconAlign: 'right',
+                iconCls: 'x-fa fa-angle-left',
+                handler: 'onLogoutClick',
+                ui: 'action'
+            }
+        ]
+    }
 });

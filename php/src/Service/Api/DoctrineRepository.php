@@ -14,9 +14,9 @@ use stdClass;
  */
 abstract class DoctrineRepository implements Repository {
 
-    private $entityManager;
+    protected $entityManager;
 
-    private $repository;
+    protected $repository;
 
     /**
      * DoctrineRepository constructor.

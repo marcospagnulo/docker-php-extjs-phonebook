@@ -14,5 +14,14 @@ Ext.define('extjs.view.main.nav.NavViewController', {
 				return;
 		}
 		this.fireViewEvent("select", node);
+	},
+
+	onLogoutClick: function(tree, node) {
+		if (!node) {
+				return;
+		}
+		this.fireViewEvent("logout", node);
 	}
+
+	
 });
