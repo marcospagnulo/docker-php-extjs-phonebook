@@ -6,7 +6,7 @@ Ext.define('extjs.view.main.MainView', {
         type: 'mainviewmodel'
     },
     requires: [
-    'Ext.layout.Fit'
+        'Ext.layout.Fit'
     ],
     layout: 'fit',
     items: [

@@ -12,7 +12,7 @@ Ext.define('extjs.Application', {
 
 	launch: function () {
 		this.removeSplash();
-		var logged = localStorage.getItem('logged');
+		var logged = localStorage.getItem('user');
 		var whichView = logged ? 'mainview' : 'loginview';
 		Ext.Viewport.add([{xtype: whichView}])
 	},

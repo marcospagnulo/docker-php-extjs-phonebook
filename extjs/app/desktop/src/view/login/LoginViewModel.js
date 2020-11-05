@@ -1,4 +1,7 @@
 Ext.define('extjs.view.main.MainViewModel', {
 	extend: 'Ext.app.ViewModel',
-	alias: 'viewmodel.loginviewmodel'
+	alias: 'viewmodel.loginviewmodel',
+	data: {
+		loading: false
+	}
 });

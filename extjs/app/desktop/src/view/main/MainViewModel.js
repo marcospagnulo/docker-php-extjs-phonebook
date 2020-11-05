@@ -2,7 +2,8 @@ Ext.define('extjs.view.main.MainViewModel', {
 	extend: 'Ext.app.ViewModel',
 	alias: 'viewmodel.mainviewmodel',
 	data: {
-		name: 'extjs',
+		name: 'PhoneBook',
+		user: null,
 		navCollapsed:       false,
 		navview_max_width:    300,
 		navview_min_width:     44,

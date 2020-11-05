@@ -7,6 +7,7 @@ Ext.define('extjs.view.main.MainViewController', {
 	},
 
 	initViewModel: function(vm){
+		vm.set('user', Ext.decode(localStorage.getItem('user')));
 		vm.getStore('menu').on({
 			load: 'onMenuDataLoad',
 			single: true,
@@ -80,7 +81,7 @@ Ext.define('extjs.view.main.MainViewController', {
 	},
 
 	onLogout: function () {
-		localStorage.removeItem("logged");
+		localStorage.removeItem("user");
 		this.getView().destroy();
 		Ext.Viewport.add([{ xtype: 'loginview'}]);
 	}

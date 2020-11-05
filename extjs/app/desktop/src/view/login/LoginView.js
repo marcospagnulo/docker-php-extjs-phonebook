@@ -27,14 +27,12 @@ Ext.define('extjs.view.login.LoginView', {
             xtype: 'textfield',
             name: 'email',
             label: 'Email',
-            bind: '{email}',
             required: true
         }, {
             xtype: 'textfield',
             name: 'password',
             inputType: 'password',
             label: 'Password',
-            bind: '{password}',
             required: true
         }, {
             xtype: 'button',
@@ -42,7 +40,10 @@ Ext.define('extjs.view.login.LoginView', {
             iconAlign: 'right',
             iconCls: 'x-fa fa-angle-right',
             handler: 'onLoginClick',
-            ui: 'action'
+            ui: 'action',
+            bind: {
+                disabled: '{loading}'
+            }
         }]
     }]
 });

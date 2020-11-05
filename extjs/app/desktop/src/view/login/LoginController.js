@@ -1,12 +1,14 @@
 Ext.define('extjs.view.login.LoginController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.login',
-    bind: {
-        email: '{email}',
-        password: '{password}'
+
+	initViewModel: function(vm){
+        vm.set('loading', false);
     },
+
     onLoginClick: function() {
 
+        this.getViewModel().set('loading', true);
         var form = this.lookup('form').getValues();
         var controller = this;
 
@@ -16,11 +18,12 @@ Ext.define('extjs.view.login.LoginController', {
             params: form,
             success: function(response, opts) {
                 
-                var obj = Ext.decode(response.responseText);
-                console.dir(obj);
+                controller.getViewModel().set('loading', false);
+
+                var user = Ext.decode(response.responseText);
 
                 // Set the localStorage value to true
-                localStorage.setItem("logged", true);
+                localStorage.setItem("user", Ext.encode(user));
         
                 // Remove Login Window
                 controller.getView().destroy();
@@ -31,6 +34,7 @@ Ext.define('extjs.view.login.LoginController', {
        
             failure: function(response, opts) {
                 console.log('server-side failure with status code ' + response.status);
+                controller.getViewModel().set('loading', false);
             }
         });
 
