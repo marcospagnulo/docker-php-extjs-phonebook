@@ -18,6 +18,18 @@ Ext.define('extjs.view.main.MainViewModel', {
 
 	},
 	formulas: {
+		logoutCls: function(get) {
+			return get('navCollapsed') ? 'logout close' : 'logout open';
+		},
+		logoutText: function(get) {
+			return get('navCollapsed') ? '' : 'Logout';
+		},
+		navToggleCls: function(get) {
+			return get('navCollapsed') ? 'navToggle' : 'navToggle open';
+		},
+		navToggleIcon: function(get) {
+			return get('navCollapsed') ? 'x-fa fa-bars' : 'x-fa fa-arrow-left';
+		},
 		navview_width: function(get) {
 			return get('navCollapsed') ? get('navview_min_width') : get('navview_max_width');
 		},

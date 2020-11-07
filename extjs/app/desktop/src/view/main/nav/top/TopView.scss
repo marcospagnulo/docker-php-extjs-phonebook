@@ -24,3 +24,13 @@
 .topview .x-toolbar-body-el {
 	padding: 6px 5px 2px 1px;
 }
+
+.navToggle{
+    align-self: center;
+    margin-left: 4px;
+}
+
+.navToggle.open{
+    margin-left: auto;
+    margin-right: 16px;
+}

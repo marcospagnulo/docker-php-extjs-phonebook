@@ -6,20 +6,29 @@ Ext.define('extjs.view.main.nav.top.TopView', {
     shadow: false,
     items: [
         {
-            xtype: 'container', 
-            cls: 'topviewtext',
-            bind: { 
-                html: '{name}',
-                hidden: '{navCollapsed}' 
-            }
-        },
-        '->',
-        {
-            xtype: 'button',
-            ui: 'topviewbutton',
-            reference: 'navtoggle',
-            handler: 'onTopViewNavToggle',
-            iconCls: 'x-fa fa-navicon'
+            xtype: 'container',
+            layout: 'hbox',
+            width: '100%',
+            items: [
+                {
+                    xtype: 'container', 
+                    cls: 'topviewtext',
+                    bind: { 
+                        html: '{name}',
+                        hidden: '{navCollapsed}' 
+                    }
+                },
+                {
+                    xtype: 'button',
+                    ui: 'topviewbutton',
+                    reference: 'navtoggle',
+                    handler: 'onTopViewNavToggle',
+                    bind: {
+                        iconCls: '{navToggleIcon}',
+                        cls: '{navToggleCls}',
+                    }
+                }
+            ]
         }
     ]
 });

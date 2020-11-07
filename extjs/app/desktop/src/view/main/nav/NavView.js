@@ -5,7 +5,7 @@ Ext.define('extjs.view.main.nav.NavView', {
     cls: 'navview',
     viewModel: {},
     layout: 'fit',
-    tbar: {xtype: 'topview', height: 50},
+    tbar: {xtype: 'topview'},
     items: [ 
         {
             xtype: 'menuview', 
@@ -22,12 +22,15 @@ Ext.define('extjs.view.main.nav.NavView', {
         items : [
             {
                 xtype: 'button',
-                text: 'Logout',
                 bind: {width: '100%'}, 
                 iconAlign: 'right',
-                iconCls: 'x-fa fa-angle-left',
+                iconCls: 'x-fa fa-sign-out-alt',
                 handler: 'onLogoutClick',
-                ui: 'action'
+                ui: 'normal',
+                bind: {
+                    text: '{logoutText}',
+                    cls: '{logoutCls}'
+                }
             }
         ]
     }
