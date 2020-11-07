@@ -8,7 +8,11 @@ Ext.define('extjs.view.main.MainViewController', {
 
 	initViewModel: function(vm){
 		vm.set('user', Ext.decode(localStorage.getItem('user')));
-		vm.getStore('menu').on({
+	},
+	
+	init: function() {
+		console.log('init');
+		this.getViewModel().getStore('menu').on({
 			load: 'onMenuDataLoad',
 			single: true,
 			scope: this
@@ -16,10 +20,13 @@ Ext.define('extjs.view.main.MainViewController', {
 	},
 
 	onMenuDataLoad: function(store){
+		console.log('onMenuDataLoad');
 		this.mainRoute(Ext.util.History.getHash());
 	},
 
 	mainRoute:function(xtype) {
+
+		console.log('mainRoute');
 		var navview = this.lookup('navview'),
 			menuview = navview.lookup('menuview'),
 			centerview = this.lookup('centerview'),
@@ -30,12 +37,13 @@ Ext.define('extjs.view.main.MainViewController', {
 			console.log(xtype + ' does not exist');
 			return;
 		}
-		if(!menuview.getStore()) {
+
+		if(!this.getViewModel().getStore('menu')) {
 			console.log('Store not yet avalable from viewModel binding');
 			return;
 		}
-
-		node = menuview.getStore().findNode('xtype', xtype);
+		
+		node = this.getViewModel().getStore('menu').findNode('xtype', xtype);
 
 		if (node == null) {
 			console.log('unmatchedRoute: ' + xtype);
