@@ -18,6 +18,9 @@ Ext.define('extjs.view.main.MainViewModel', {
 
 	},
 	formulas: {
+		welcomeText: function(get) {
+			return 'Welcome ' + get('user').name;
+		},
 		logoutCls: function(get) {
 			return get('navCollapsed') ? 'logout close' : 'logout open';
 		},
