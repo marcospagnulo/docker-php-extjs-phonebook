@@ -43,6 +43,11 @@ class User implements JsonSerializable {
     protected $password;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $role;
+
+    /**
      * User constructor.
      *
      * @param int    $id       Id
@@ -50,13 +55,15 @@ class User implements JsonSerializable {
      * @param string $surname  Surname
      * @param string $email    Email
      * @param string $password Password
+     * @param int    $role     Role
      */
-    public function __construct($id, $name, $surname, $email, $password) {
+    public function __construct($id, $name, $surname, $email, $password, $role) {
         $this->id = $id;
         $this->name = $name;
         $this->surname = $surname;
         $this->email = $email;
         $this->password = $password;
+        $this->role = $role;
     }
 
     /**
@@ -130,6 +137,20 @@ class User implements JsonSerializable {
     }
 
     /**
+     * @return int
+     */
+    public function getRole(): int {
+        return $this->role;
+    }
+
+    /**
+     * @param int $role
+     */
+    public function setRole(int $role) {
+        $this->role = $role;
+    }
+
+    /**
      * Specify data which should be serialized to JSON
      *
      * @link  https://php.net/manual/en/jsonserializable.jsonserialize.php
@@ -143,5 +164,6 @@ class User implements JsonSerializable {
             'name' => $this->name,
             'surname' => $this->surname,
             'email' => $this->email,
+            'role' => $this->role,
         );
 }}
