@@ -25,6 +25,8 @@ class Users extends CI_Controller {
      * @return mixed
      */
     public function index(){
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: *');
         header('Content-Type: application/json');
         $users = $this->repository->findAll();
         echo json_encode($users);
