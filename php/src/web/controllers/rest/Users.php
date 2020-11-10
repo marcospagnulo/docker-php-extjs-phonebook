@@ -25,11 +25,20 @@ class Users extends CI_Controller {
      * @return mixed
      */
     public function index(){
+
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Headers: *');
         header('Content-Type: application/json');
-        $users = $this->repository->findAll();
-        echo json_encode($users);
+
+        $page = $this->input->get('page');
+        $limit = $this->input->get('limit');
+        $users = $this->repository->findAllWithPagination($page - 1, $limit);
+        $count = $this->repository->count();
+
+        echo json_encode([
+            "data" => $users,
+            "count" => $count
+        ]);
     }
 
     public function login(){

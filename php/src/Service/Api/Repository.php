@@ -39,6 +39,23 @@ interface Repository {
     public function findAll();
 
     /**
+     * Find entities with pagination
+     *
+     * @param int $page  Number of page
+     * @param int $limit Number of results
+     *
+     * @return mixed
+     */
+    public function findAllWithPagination($page, $limit);
+
+    /**
+     * Count all the entities
+     *
+     * @return int
+     */
+    public function count();
+
+    /**
      * Remove an entity with the given id
      *
      * @param int $id Entity id

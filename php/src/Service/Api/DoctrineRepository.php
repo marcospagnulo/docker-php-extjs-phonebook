@@ -64,6 +64,34 @@ abstract class DoctrineRepository implements Repository {
     }
 
     /**
+     * Find entities with pagination
+     *
+     * @param int $page  Numner of page
+     * @param int $limit Number of results
+     *
+     * @return mixed|void
+     */
+    public function findAllWithPagination($page, $limit){
+
+        $first = $page * $limit;
+        $class = $this->getEntityClass();
+        $dql = 'SELECT e FROM ' . $class . ' e';
+        return $this->entityManager->createQuery($dql)
+                                   ->setFirstResult($first)
+                                   ->setMaxResults($limit)
+                                   ->getResult();
+    }
+
+    /**
+     * Count all the entities
+     *
+     * @return int
+     */
+    public function count(){
+        return $this->repository->count([]);
+    }
+
+    /**
      * Remove an entity with the given id
      *
      * @param int $id Entity id
