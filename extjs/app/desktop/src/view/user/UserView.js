@@ -6,14 +6,11 @@ Ext.define('extjs.view.user.UserView',{
     controller: {type: 'userviewcontroller'},
     viewModel: {type: 'userviewmodel'},
     store: {type: 'userviewstore'},
-    grouped: true,
-    groupFooter: {
-        xtype: 'gridsummaryrow'
-    },
     plugins: {
         rowedit: {
             autoConfirm: false
-        }
+        },
+        pagingtoolbar: true
     },
     columns: [
         {
@@ -30,15 +27,17 @@ Ext.define('extjs.view.user.UserView',{
             width: 100,
             cell: {userCls: 'bold'}
         },
-        {text: 'Email',dataIndex: 'email',editable: true, width: 230},
         {
-            text: 'Phone',
-            dataIndex: 'phone',
+            text: 'Email',dataIndex: 'email',editable: true, width: 230
+        },
+        {
+            text: 'Role',
+            dataIndex: 'role',
             editable: true,
             width: 150
         }
     ],
     listeners: {
-        canceledit: 'onEditCancelled'
+        edit: 'onEditComplete'
     }
 });

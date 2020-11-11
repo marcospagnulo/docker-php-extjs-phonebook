@@ -1,6 +1,11 @@
 Ext.define('extjs.view.user.UserStoreProxy', {
     extend: 'Ext.data.proxy.Ajax' ,
-    alias: 'proxy.userstore',
+    alias: 'proxy.userproxy',
     model: 'User',
-    reader: 'json'
+    startParam: '',
+    reader: {
+        type: 'json',
+        rootProperty: 'data',
+        totalProperty: 'count'
+    }
 });
