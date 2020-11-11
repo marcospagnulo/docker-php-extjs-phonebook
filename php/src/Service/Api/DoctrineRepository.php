@@ -32,9 +32,9 @@ abstract class DoctrineRepository implements Repository {
     /**
      * Persist an entity
      *
-     * @param stdClass $entity Entity to persist
+     * @param object $entity Entity to persist
      *
-     * @return stdClass
+     * @return object
      * @throws ORMException
      */
     public function save($entity) {
@@ -48,7 +48,7 @@ abstract class DoctrineRepository implements Repository {
      *
      * @param int $id Entity id
      *
-     * @return stdClass
+     * @return object
      */
     public function findById($id) {
         return $this->repository->find($id);

@@ -58,12 +58,12 @@ class User implements JsonSerializable {
      * @param int    $role     Role
      */
     public function __construct($id, $name, $surname, $email, $password, $role) {
-        $this->id = $id;
+        $this->id = (int) $id;
         $this->name = $name;
         $this->surname = $surname;
         $this->email = $email;
         $this->password = $password;
-        $this->role = $role;
+        $this->role = (int) $role;
     }
 
     /**

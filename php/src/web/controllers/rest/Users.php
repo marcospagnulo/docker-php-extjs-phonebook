@@ -67,10 +67,14 @@ class Users extends RestController {
 
             $data = $this->input->post();
 
-            $user = new User($data['id'], $data['name'], $data['surname'], $data['email'], $data['email'], $data['role']);
             if(isset($data['id'])){
-                $userWithPassword = $this->repository->findById($data['id']);
-                $user->setPassword($userWithPassword->getPassword());
+                $user = $this->repository->findById($data['id']);
+                $user->setName($data['name']);
+                $user->setSurname($data['surname']);
+                $user->setEmail($data['email']);
+                $user->setRole($data['role']);
+            } else {
+                $user = new User(null, $data['name'], $data['surname'], $data['email'], $data['password'], $data['role']);
             }
             $user = $this->repository->save($user);
 
