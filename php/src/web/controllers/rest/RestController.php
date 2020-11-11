@@ -1,6 +1,7 @@
 <?php
 
 
+use Doctrine\ORM\ORMException;
 use Phonebook\Service\Api\DoctrineRepository;
 
 abstract class RestController extends CI_Controller {
@@ -9,15 +10,6 @@ abstract class RestController extends CI_Controller {
      * @var DoctrineRepository
      */
     protected $repository;
-
-    /**
-     * Set header for enable cross domain ajax and json responsetype
-     */
-    protected function setHeaders(){
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Headers: *');
-        header('Content-Type: application/json');
-    }
 
     /**
      * RestController constructor.
@@ -30,93 +22,72 @@ abstract class RestController extends CI_Controller {
     }
 
     /**
+     * Set headers for enable cross domain and json response type.
+     *
+     * @return void
+     */
+    protected function checkOptionsAndEnableCors(){
+
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: *');
+        header('Content-Type: application/json');
+
+        if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
+            http_response_code(200);
+            exit;
+        }
+    }
+
+    /**
      * Put in response an object containing the error
      *
      * @param string $msg Error message
      *
      * @return void
      */
-    private function handleError($msg){
+    protected function handleError($msg){
         http_response_code(500);
         echo json_encode([ "data" => $msg]);
-    }
-
-    public function index(){
-
-        $this->setHeaders();
-
-        $page = $this->input->get('page');
-        $limit = $this->input->get('limit');
-
-        if(isset($page) && isset($limit)){
-            $users = $this->repository->findAllWithPagination($page - 1, $limit);
-            $count = $this->repository->count();
-            echo json_encode([ "data" => $users, "count" => $count ]);
-        } else {
-            $this->handleError('Missing page and limit parameter');
-        }
     }
 
     /**
      * Persist an entity
      *
-     * @param stdClass $entity Entity to persist
-     *
-     * @return stdClass
+     * @return void
      */
-    public function save($entity){
-
-    }
-
+    public abstract function save();
     /**
      * Find an entity with the given id
      *
-     * @param int $id Entity id
-     *
-     * @return stdClass
+     * @return void
      */
-    public function findById($id){
-
-    }
+    public abstract function findById();
 
     /**
      * Find all entity
      *
-     * @return array
+     * @return void
      */
-    public function findAll(){
-
-    }
+    public abstract function findAll();
 
     /**
      * Find entities with pagination
      *
-     * @param int $page  Number of page
-     * @param int $limit Number of results
-     *
-     * @return mixed
+     * @return void
      */
-    public function findAllWithPagination($page, $limit){
-
-    }
+    public abstract function findAllWithPagination();
 
     /**
      * Count all the entities
      *
-     * @return int
+     * @return void
      */
-    public function count(){
-
-    }
+    public abstract function count();
 
     /**
      * Remove an entity with the given id
      *
-     * @param int $id Entity id
-     *
      * @return void
      */
-    public function delete($id){
-
-    }
+    public abstract function delete();
 }
