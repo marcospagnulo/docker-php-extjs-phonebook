@@ -29,7 +29,7 @@ Ext.define('extjs.view.login.LoginController', {
         this.getViewModel().set('loading', true);
 
         Ext.Ajax.request({
-            url: 'http://localhost:8080/rest/users/login?XDEBUG_SESSION_START=PHPSTORM',
+            url: 'http://localhost:8080/rest/users/login',
             method: 'POST',
             params: form,
             success: function(response, opts) {

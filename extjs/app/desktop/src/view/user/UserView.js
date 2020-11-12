@@ -8,7 +8,8 @@ Ext.define('extjs.view.user.UserView',{
     store: {type: 'userviewstore'},
     plugins: {
         rowedit: {
-            autoConfirm: false
+            autoConfirm: false,
+            clicksToEdit: 1
         },
         pagingtoolbar: true
     },
@@ -28,16 +29,28 @@ Ext.define('extjs.view.user.UserView',{
             cell: {userCls: 'bold'}
         },
         {
-            text: 'Email',dataIndex: 'email',editable: true, width: 230
+            text: 'Email',
+            dataIndex: 'email',
+            editable: true, 
+            width: 230
         },
         {
             text: 'Role',
             dataIndex: 'role',
             editable: true,
-            width: 150
+            width: 50
+        },
+        {
+            cell: {
+                xtype: 'gridcell',
+                encodeHtml: false
+            },
+            tpl: '<i class="fa fa-trash" style="cursor: pointer;"></i>',
+            width: 20,
         }
     ],
     listeners: {
-        edit: 'onEditComplete'
+        edit: 'onEditComplete',
+        itemtap: 'onItemTap'
     }
 });

@@ -11,7 +11,6 @@ Ext.define('extjs.view.main.MainViewController', {
 	},
 	
 	init: function() {
-		console.log('init');
 		this.getViewModel().getStore('menu').on({
 			load: 'onMenuDataLoad',
 			single: true,
@@ -20,13 +19,11 @@ Ext.define('extjs.view.main.MainViewController', {
 	},
 
 	onMenuDataLoad: function(store){
-		console.log('onMenuDataLoad');
 		this.mainRoute(Ext.util.History.getHash());
 	},
 
 	mainRoute:function(xtype) {
 
-		console.log('mainRoute');
 		var navview = this.lookup('navview'),
 			menuview = navview.lookup('menuview'),
 			centerview = this.lookup('centerview'),
@@ -71,11 +68,11 @@ Ext.define('extjs.view.main.MainViewController', {
 
 	onTopViewNavToggle: function () {
 		var vm = this.getViewModel();
-
 		vm.set('navCollapsed', !vm.get('navCollapsed'));
 	},
 
 	onHeaderViewDetailToggle: function (button) {
+		
 		var vm = this.getViewModel();
 
 		vm.set('detailCollapsed', !vm.get('detailCollapsed'));
