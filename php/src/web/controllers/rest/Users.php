@@ -14,18 +14,21 @@ require_once ('RestController.php');
  */
 class Users extends RestController {
 
+    /**
+     * Users constructor.
+     *
+     * @throws ORMException
+     */
     public function __construct() {
         parent::__construct(new UserRepository());
     }
 
+    /**
+     * Find a user with the given credentials
+     */
     public function login(){
 
-        $this->setHeaders();
-
-        if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
-            http_response_code(200);
-            return;
-        }
+        $this->checkOptionsAndEnableCors();
 
         $email = $this->input->post('email');
         $password = $this->input->post('password');
@@ -39,6 +42,42 @@ class Users extends RestController {
     }
 
     public function index(){
+        $this->findAllWithPagination();
+    }
+
+    /**
+     * Find an entity with the given id
+     *
+     * @return void
+     */
+    public function findById() {
+        // TODO: Implement findById() method.
+    }
+
+    /**
+     * Find all entity
+     *
+     * @return void
+     */
+    public function findAll() {
+
+        $this->checkOptionsAndEnableCors();
+
+        if(isset($page) && isset($limit)){
+            $users = $this->repository->findAll();
+            $count = $this->repository->count();
+            echo json_encode([ "data" => $users, "count" => $count ]);
+        } else {
+            $this->handleError('Missing page and limit parameter');
+        }
+    }
+
+    /**
+     * Find entities with pagination
+     *
+     * @return void
+     */
+    public function findAllWithPagination() {
 
         $this->checkOptionsAndEnableCors();
 
@@ -61,9 +100,9 @@ class Users extends RestController {
      */
     public function save(){
 
-        $this->checkOptionsAndEnableCors();
-
         try {
+
+            $this->checkOptionsAndEnableCors();
 
             $data = $this->input->post();
 
@@ -88,30 +127,29 @@ class Users extends RestController {
     }
 
     /**
-     * Find an entity with the given id
+     * Remove an entity with the given id
      *
      * @return void
      */
-    public function findById() {
-        // TODO: Implement findById() method.
-    }
+    public function delete() {
 
-    /**
-     * Find all entity
-     *
-     * @return void
-     */
-    public function findAll() {
-        // TODO: Implement findAll() method.
-    }
+        try{
 
-    /**
-     * Find entities with pagination
-     *
-     * @return void
-     */
-    public function findAllWithPagination() {
-        // TODO: Implement findAllWithPagination() method.
+            $this->checkOptionsAndEnableCors();
+
+            $id = $this->input->get('id');
+            if(isset($id)){
+                $this->repository->delete((int) $id);
+                echo json_encode([ "data" => 'User id '.$id. ' deleted' ]);
+            } else {
+                $this->handleError('Missing id parameter');
+            }
+        } catch (ORMException $e) {
+            $this->handleError($e->getMessage());
+        } catch (Exception $e) {
+            log_message('error', $e->getMessage());
+            $this->handleError($e->getMessage());
+        }
     }
 
     /**
@@ -121,14 +159,5 @@ class Users extends RestController {
      */
     public function count() {
         // TODO: Implement count() method.
-    }
-
-    /**
-     * Remove an entity with the given id
-     *
-     * @return void
-     */
-    public function delete() {
-        // TODO: Implement delete() method.
     }
 }
