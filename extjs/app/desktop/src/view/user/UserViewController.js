@@ -2,9 +2,8 @@ Ext.define('extjs.view.user.UserViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userviewcontroller',
 
-    launch: function(){
-        this.onSuccess = this.onSuccess.bind(this);
-        this.onFailure = this.onFailure.bind(this);
+    onAddClick: function(){
+        this.getViewModel().set('floatingCls', 'aaaaa');
     },
 
     onItemTap: function (grid, index, target, record, e) {
@@ -18,8 +17,7 @@ Ext.define('extjs.view.user.UserViewController', {
                         record.data.id, 
                         controller.onSuccess, 
                         controller.onFailure, 
-                        grid.store.currentPage, 
-                        controller.getViewModel()
+                        grid.store
                     );
                 }
             });
@@ -31,17 +29,16 @@ Ext.define('extjs.view.user.UserViewController', {
             location.record.data, 
             this.onSuccess, 
             this.onFailure, 
-            grid.store.currentPage, 
-            this.getViewModel()
+            grid.store
         );
     },
 
-    onSuccess: function(page, limit, vm){
-        vm.getView().getStore().load({ page: page, limit: limit});
+    onSuccess: function(store){
+        store.load({ page: store.currentPage, limit: 25});
         Ext.toast({message: 'Operation completed', timeout: 2000})
     },
 
-    onFailure: function(response, vm){
+    onFailure: function(response, store){
         Ext.toast({message: 'Unable to complete operation', timeout: 2000})
     }
 });

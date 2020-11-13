@@ -1,1 +1,15 @@
 .userview {}
+
+.floating{
+    position: absolute;
+    bottom: 16px;
+    right: 32px;
+    width: 64px;
+    height: 64px !important;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.52), 2px 2px 5px 0 rgba(0, 0, 0, 0.58);
+    background: purple;
+}
+
+.white{
+    color: white !important;
+}
