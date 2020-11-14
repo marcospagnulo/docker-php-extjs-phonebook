@@ -15,7 +15,9 @@ Ext.define('extjs.view.user.UserView',{
             items: [
                 {
                   xtype: 'grid',
-                  store: {type: 'userviewstore'},
+                  bind: {
+                      store: '{user}'
+                  },
                   plugins: {
                       rowedit: {
                           autoConfirm: false,
@@ -24,19 +26,17 @@ Ext.define('extjs.view.user.UserView',{
                       pagingtoolbar: true
                   },
                   columns: [
-                      {
-                          text: 'Name',
-                          dataIndex: 'name',
+                    {
+                          text: 'Id',
+                          dataIndex: 'id',
                           editable: true,
                           width: 100,
-                          cell: {userCls: 'bold'}
                       },
                       {
                           text: 'Surname',
                           dataIndex: 'surname',
                           editable: true,
                           width: 100,
-                          cell: {userCls: 'bold'}
                       },
                       {
                           text: 'Email',
@@ -72,6 +72,52 @@ Ext.define('extjs.view.user.UserView',{
                     bind: { 
                         iconCls: '{addBtnCls}'
                     }
+                }
+            ]
+        },
+        {
+            xtype: 'formpanel',
+            reference: 'form',
+            layout: 'vbox',
+            width: '40%',
+            docked: 'right',
+            modelValidation: true,
+            items: [
+                {
+                    xtype: 'textfield',
+                    bind: '{userModel.name}',
+                    name: 'name',
+                    label: 'Name',
+                    required: true,
+                },
+                {
+                    xtype: 'textfield',
+                    bind: '{userModel.surname}',
+                    name: 'surname',
+                    label: 'Surname',
+                    required: true,
+                },
+                {
+                    xtype: 'textfield',
+                    bind: '{userModel.email}',
+                    name: 'email',
+                    label: 'Email',
+                    required: true,
+                },
+                {
+                    xtype: 'textfield',
+                    bind: '{userModel.role}',
+                    name: 'role',
+                    label: 'Role',
+                    required: true,
+                },
+                {
+                    xtype: 'button',
+                    text: 'SUBMIT',
+                    iconAlign: 'right',
+                    handler: 'onSubmitUser',
+                    ui: 'action',
+                    bind: { disabled: '{loading}' }
                 }
             ]
         }
