@@ -85,6 +85,15 @@ Ext.define('extjs.view.user.UserView',{
             items: [
                 {
                     xtype: 'textfield',
+                    bind: '{userModel.id}',
+                    name: 'id',
+                    label: 'Id',
+                    editable: false,
+                    clearable : false
+
+                },
+                {
+                    xtype: 'textfield',
                     bind: '{userModel.name}',
                     name: 'name',
                     label: 'Name',

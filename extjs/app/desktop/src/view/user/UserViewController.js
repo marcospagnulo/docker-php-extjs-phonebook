@@ -2,21 +2,23 @@ Ext.define('extjs.view.user.UserViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userviewcontroller',
 
-    onAddClick: function(){
+    onAddClick: function(btn){
+
         var vm = this.getViewModel();
         var addUserOpen = vm.get('addUserOpen');
+
         vm.set('addUserOpen', !addUserOpen)
         vm.set('grid_width', addUserOpen ? '100%' : '60%');
-        vm.set('addBtnCls', addUserOpen ? 'white x-fa fa-plus' : 'white x-fa fa-times');
     },
 
     onSubmitUser: function(){
 
         var vm = this.getViewModel();
         var form = this.lookup('form');
-        vm.set('loading', true);
-
+        
+        form.validate();
         if(form.isValid()){
+            vm.set('loading', true);
             App.service.UserService.save(
                 form.getValues(), 
                 this.onSuccess, 
@@ -26,7 +28,7 @@ Ext.define('extjs.view.user.UserViewController', {
         } else {
             Ext.Msg.show({
                title: "Save user",
-               msg: "Please fill all fields.",
+               message: "Please fill all fields.",
                buttons: Ext.MessageBox.OK,
                icon: Ext.MessageBox.WARNING
            });
@@ -36,7 +38,9 @@ Ext.define('extjs.view.user.UserViewController', {
     onItemTap: function (grid, index, target, record, e) {
         
         var controller = this;
-        controller.getViewModel().set('userModel', record.data);
+        var vm = controller.getViewModel();
+        vm.set('userModel', record.data);
+        vm.set('addBtnCls', 'white x-fa fa-edit');
 
         if (e.target.classList.contains("fa-trash") || e.target.children[0] && e.target.children[0].classList.contains("fa-trash")) {
 
