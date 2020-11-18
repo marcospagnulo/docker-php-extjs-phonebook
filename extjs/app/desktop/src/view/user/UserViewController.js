@@ -5,10 +5,12 @@ Ext.define('extjs.view.user.UserViewController', {
     onAddClick: function(btn){
 
         var vm = this.getViewModel();
-        var addUserOpen = vm.get('addUserOpen');
+        var addUserOpen = !vm.get('addUserOpen');
 
-        vm.set('addUserOpen', !addUserOpen)
-        vm.set('grid_width', addUserOpen ? '100%' : '60%');
+        vm.set('addUserOpen', addUserOpen);
+        if(!addUserOpen){
+            vm.set('userModel', null);
+        }
     },
 
     onSubmitUser: function(){
@@ -35,27 +37,30 @@ Ext.define('extjs.view.user.UserViewController', {
         }
     },
 
-    onItemTap: function (grid, index, target, record, e) {
+    onEditClick: function (btn) {
         
-        var controller = this;
-        var vm = controller.getViewModel();
+        var record = btn.up().up()._record;
+        var vm = this.getViewModel();
+
+        vm.set('addUserOpen', true);
         vm.set('userModel', record.data);
-        vm.set('addBtnCls', 'white x-fa fa-edit');
+    },
 
-        if (e.target.classList.contains("fa-trash") || e.target.children[0] && e.target.children[0].classList.contains("fa-trash")) {
+    onDeleteClick: function (btn) {
 
-            Ext.Msg.confirm("Confirmation", "Are you sure you want to do that?", function (btn) {
-                if (btn == 'yes') {
-                    App.service.UserService.delete(
-                        record.data.id, 
-                        controller.onSuccess, 
-                        controller.onFailure,
-                        controller.getViewModel(),
-                        grid.store.currentPage
-                    );
-                }
-            });
-        }
+        var record = btn.up().up()._record;
+
+        Ext.Msg.confirm("Confirmation", "Confirm to delete user id " + record.data.id + "?", function (btn) {
+            if (btn == 'yes') {
+                App.service.UserService.delete(
+                    record.data.id, 
+                    controller.onSuccess, 
+                    controller.onFailure,
+                    controller.getViewModel(),
+                    grid.store.currentPage
+                );
+            }
+        });
     },
 
     onEditComplete: function (grid, location) {
