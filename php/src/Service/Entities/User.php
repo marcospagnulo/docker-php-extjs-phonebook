@@ -40,6 +40,16 @@ class User implements JsonSerializable {
     /**
      * @ORM\Column(type="string")
      */
+    protected $phone;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $address;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $password;
 
     /**
@@ -54,14 +64,18 @@ class User implements JsonSerializable {
      * @param string $name     Name
      * @param string $surname  Surname
      * @param string $email    Email
+     * @param string $phone    Phone number
+     * @param string $address  Address
      * @param string $password Password
      * @param int    $role     Role
      */
-    public function __construct($id, $name, $surname, $email, $password, $role) {
+    public function __construct($id, $name, $surname, $email, $phone, $address, $password, $role) {
         $this->id = (int) $id;
         $this->name = $name;
         $this->surname = $surname;
         $this->email = $email;
+        $this->phone = $phone;
+        $this->address = $address;
         $this->password = $password;
         $this->role = (int) $role;
     }
@@ -151,6 +165,34 @@ class User implements JsonSerializable {
     }
 
     /**
+     * @return string
+     */
+    public function getPhone(): string {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone(string $phone) {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress(): string {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress(string $address) {
+        $this->address = $address;
+    }
+
+    /**
      * Specify data which should be serialized to JSON
      *
      * @link  https://php.net/manual/en/jsonserializable.jsonserialize.php
@@ -164,6 +206,8 @@ class User implements JsonSerializable {
             'name' => $this->name,
             'surname' => $this->surname,
             'email' => $this->email,
+            'phone' => $this->phone,
+            'address' => $this->address,
             'role' => $this->role,
         );
 }}

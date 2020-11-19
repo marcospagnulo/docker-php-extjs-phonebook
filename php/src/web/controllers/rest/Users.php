@@ -111,9 +111,13 @@ class Users extends RestController {
                 $user->setName($data['name']);
                 $user->setSurname($data['surname']);
                 $user->setEmail($data['email']);
+                $user->setPhone($data['phone']);
+                $user->setAddress($data['address']);
+                $user->setPassword($data['password']);
                 $user->setRole($data['role']);
             } else {
-                $user = new User(null, $data['name'], $data['surname'], $data['email'], $data['password'], $data['role']);
+                $user = new User(null, $data['name'], $data['surname'], $data['email'], $data['password'],
+                                 $data['phone'], $data['address'], $data['role']);
             }
             $user = $this->repository->save($user);
 
@@ -150,14 +154,5 @@ class Users extends RestController {
             log_message('error', $e->getMessage());
             $this->handleError($e->getMessage());
         }
-    }
-
-    /**
-     * Count all the entities
-     *
-     * @return void
-     */
-    public function count() {
-        // TODO: Implement count() method.
     }
 }

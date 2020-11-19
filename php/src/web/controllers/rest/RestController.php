@@ -79,13 +79,6 @@ abstract class RestController extends CI_Controller {
     public abstract function findAllWithPagination();
 
     /**
-     * Count all the entities
-     *
-     * @return void
-     */
-    public abstract function count();
-
-    /**
      * Remove an entity with the given id
      *
      * @return void
