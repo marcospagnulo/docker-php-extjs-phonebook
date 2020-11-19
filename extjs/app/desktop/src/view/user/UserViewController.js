@@ -13,6 +13,15 @@ Ext.define('extjs.view.user.UserViewController', {
         }
     },
 
+    onEditClick: function (btn) {
+        
+        var record = btn.up().up()._record;
+        var vm = this.getViewModel();
+
+        vm.set('addUserOpen', true);
+        vm.set('userModel', record.data);
+    },
+
     onSubmitUser: function(){
 
         var vm = this.getViewModel();
@@ -23,9 +32,7 @@ Ext.define('extjs.view.user.UserViewController', {
             vm.set('loading', true);
             App.service.UserService.save(
                 form.getValues(), 
-                this.onSuccess, 
-                this.onFailure, 
-                vm
+                this
             );
         } else {
             Ext.Msg.show({
@@ -37,27 +44,16 @@ Ext.define('extjs.view.user.UserViewController', {
         }
     },
 
-    onEditClick: function (btn) {
-        
-        var record = btn.up().up()._record;
-        var vm = this.getViewModel();
-
-        vm.set('addUserOpen', true);
-        vm.set('userModel', record.data);
-    },
-
     onDeleteClick: function (btn) {
 
         var record = btn.up().up()._record;
+        var controller = this;
 
         Ext.Msg.confirm("Confirmation", "Confirm to delete user id " + record.data.id + "?", function (btn) {
             if (btn == 'yes') {
                 App.service.UserService.delete(
                     record.data.id, 
-                    controller.onSuccess, 
-                    controller.onFailure,
-                    controller.getViewModel(),
-                    grid.store.currentPage
+                    controller
                 );
             }
         });
@@ -66,17 +62,18 @@ Ext.define('extjs.view.user.UserViewController', {
     onEditComplete: function (grid, location) {
         App.service.UserService.save(
             location.record.data, 
-            this.onSuccess, 
-            this.onFailure,
-            this.getViewModel(),
-            grid.store.currentPage
+            this
         );
     },
 
-    onSuccess: function(vm, currentPage){
+    onSuccess: function(){
+        
+        var vm = this.getViewModel();
         vm.set('loading', false);
+
         var store = vm.getStore('user');
-        store.load({ page: currentPage, limit: 25});
+        store.load({ page: store.currentPage, limit: 25});
+        
         Ext.toast({message: 'Operation completed', timeout: 2000})
     },
 

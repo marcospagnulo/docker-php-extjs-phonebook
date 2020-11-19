@@ -11,50 +11,49 @@ Ext.define('App.service.UserService', {
                 context.onLoginSuccess(response);
             },
             failure: function(response, opts) {
-                
-                var message;
-                switch(response.status){
-                    case 0:
-                        message = 'Service unavailable';
-                        break;
-                    case 401:
-                        message = 'Wrong credentials';
-                        break;
-                    case 500:
-                        message = 'Error during login';
-                        break;
-                }
-                
+                var message = this.messageFromResponseStatus(response.status);
                 context.onLoginFailure(message);
             }
         });
     },
 
-    save: function(user, onSuccess, onFailure, vm, currentPage){
+    save: function(user, context){
         Ext.Ajax.request({
             url: 'http://localhost:8080/rest/users/save?XDEBUG_SESSION_START=PHPSTORM',
             method: 'POST',
             params: user,
             success: function(response, opts) {
-                onSuccess(vm, currentPage);
+                context.onSuccess(response);
             },
             failure: function(response, opts) {
-                onFailure(response, vm);
+                var message = this.messageFromResponseStatus(response.status);
+                context.onFailure(message);
             }
         });
     },
 
-    delete: function(id, onSuccess, onFailure, vm, currentPage){
+    delete: function(id, context){
         Ext.Ajax.request({
             url: 'http://localhost:8080/rest/users/delete?id=' + id,
             method: 'DELETE',
             success: function(response, opts) {
-                onSuccess(vm, currentPage);
+                context.onSuccess(response);
             },
             failure: function(response, opts) {
-                onFailure(response, vm, currentPage);
+                var message = this.messageFromResponseStatus(response.status);
+                context.onFailure(message);
             }
         });
-    }
+    },
 
+    messageFromResponseStatus: function(status){
+        switch(status){
+            case 0:
+                return 'Service unavailable';
+            case 401:
+                return 'Wrong credentials';
+            case 500:
+                return 'Error during login';
+        }
+    }
 });
