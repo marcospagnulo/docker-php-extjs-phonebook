@@ -24,6 +24,7 @@ Ext.define('extjs.Application', {
 
 	onLoginSuccess: function(response){
 		this.removeSplash();
+        App.util.State.set('user', Ext.decode(response.responseText));
 		Ext.Viewport.add([{xtype: 'mainview'}])
 	},
 
