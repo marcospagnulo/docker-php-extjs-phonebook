@@ -65,7 +65,17 @@ Ext.define('extjs.view.user.UserView', {
                     text: 'Role',
                     dataIndex: 'role',
                     editable: true,
-                    width: 60
+                    width: 100,
+                    renderer: function(value){
+                        return value == 1 ? 'Admin' : 'User';
+                    },
+                    editor: {
+                        xtype: 'selectfield',
+                        options: [
+                            { text: 'Admin', value: '1' },
+                            { text: 'User', value: '2' }
+                        ]
+                    }
                 },
                 {
                     cell: {
@@ -145,10 +155,27 @@ Ext.define('extjs.view.user.UserView', {
                 },
                 {
                     xtype: 'textfield',
+                    bind: '{userModel.phone}',
+                    name: 'phone',
+                    label: 'Phone'
+                },
+                {
+                    xtype: 'textfield',
+                    bind: '{userModel.address}',
+                    name: 'address',
+                    label: 'Address',
+                },
+                {
+                    xtype: 'selectfield',
+                    label: 'Select a role',
                     bind: '{userModel.role}',
                     name: 'role',
                     label: 'Role',
                     required: true,
+                    options: [
+                        { text: 'Admin', value: '1' },
+                        { text: 'User', value: '2' }
+                    ]
                 },
                 {
                     xtype: 'button',
