@@ -11,10 +11,26 @@ Ext.define('extjs.Application', {
 	},
 
 	launch: function () {
+		
+		var remember = App.util.State.get('remember')
+		if(remember){
+			var lastLogin = App.util.State.get('lastLogin');
+			App.service.UserService.login(
+				this,
+				lastLogin
+			);
+		}
+	},
+
+	onLoginSuccess: function(response){
 		this.removeSplash();
-		var logged = localStorage.getItem('user');
-		var whichView = logged ? 'mainview' : 'loginview';
-		Ext.Viewport.add([{xtype: whichView}])
+		Ext.Viewport.add([{xtype: 'mainview'}])
+	},
+
+	onLoginFailure: function(message){
+		this.removeSplash();
+		Ext.Viewport.add([{xtype: 'loginview'}])
+        Ext.toast({message: message, timeout: 2000})
 	},
 
 	onAppUpdate: function () {

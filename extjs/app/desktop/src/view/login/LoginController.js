@@ -15,7 +15,6 @@ Ext.define('extjs.view.login.LoginController', {
 
     onLoginClick: function() {
         
-        var controller = this;
         var form = this.lookup('form').getValues();
         if(form.remember){
             App.util.State.set('lastLogin', {email: form.email, password: form.password});
@@ -28,32 +27,33 @@ Ext.define('extjs.view.login.LoginController', {
         // Disable login button
         this.getViewModel().set('loading', true);
 
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/rest/users/login',
-            method: 'POST',
-            params: form,
-            success: function(response, opts) {
-                
-                // Enble login button
-                controller.getViewModel().set('loading', false);
-                
-                // Set the localStorage value to true
-                var user = Ext.decode(response.responseText);
-                localStorage.setItem("user", Ext.encode(user));
-        
-                // Remove Login Window
-                controller.getView().destroy();
-        
-                // Add the main view to the viewport
-                Ext.Viewport.add([{xtype: 'mainview'}]);
-            },
-       
-            failure: function(response, opts) {
-                // Show error and reactivate lògin button
-                controller.getViewModel().set('loading', false);
-                Ext.toast({message: 'Wrong credentials', timeout: 2000})
-            }
-        });
+        App.service.UserService.login(
+            this,
+            form
+        );
+    },
 
+    onLoginSuccess: function(response){
+
+        var controller = this;
+        
+        // Enble login button
+        controller.getViewModel().set('loading', false);
+        
+        // Set the localStorage value to true
+        var user = Ext.decode(response.responseText);
+        App.util.State.set('user', user);
+
+        // Remove Login Window
+        controller.getView().destroy();
+
+        // Add the main view to the viewport
+        Ext.Viewport.add([{xtype: 'mainview'}]);
+    },
+
+    onLoginFailure: function(message){
+        // Show error and reactivate login button
+        this.getViewModel().set('loading', false);
+        Ext.toast({message: message, timeout: 2000})
     }
 });
