@@ -72,8 +72,8 @@ Ext.define('extjs.view.user.UserViewController', {
         Ext.toast({message: 'Operation completed', timeout: 2000})
     },
 
-    onFailure: function(response, vm){
-        vm.set('loading', false);
-        Ext.toast({message: 'Unable to complete operation', timeout: 2000})
+    onFailure: function(message){
+        this.getViewModel().set('loading', false);
+        Ext.toast({message: message, timeout: 2000})
     }
 });
