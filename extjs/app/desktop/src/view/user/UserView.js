@@ -34,6 +34,12 @@ Ext.define('extjs.view.user.UserView', {
                             width: 100,
                         },
                         {
+                            text: 'Name',
+                            dataIndex: 'name',
+                            editable: true,
+                            width: 100,
+                        },
+                        {
                             text: 'Surname',
                             dataIndex: 'surname',
                             editable: true,
