@@ -6,6 +6,8 @@ Ext.define('extjs.view.user.UserViewController', {
 
         var vm = this.getViewModel();
         var addUserOpen = !vm.get('addUserOpen');
+        var form = this.lookup('form');
+        form.clearErrors();
 
         vm.set('addUserOpen', addUserOpen);
         if(!addUserOpen){
@@ -34,13 +36,6 @@ Ext.define('extjs.view.user.UserViewController', {
                 form.getValues(), 
                 this
             );
-        } else {
-            Ext.Msg.show({
-               title: "Save user",
-               message: "Please fill all fields.",
-               buttons: Ext.MessageBox.OK,
-               icon: Ext.MessageBox.WARNING
-           });
         }
     },
 
