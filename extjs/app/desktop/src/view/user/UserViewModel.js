@@ -7,7 +7,7 @@ Ext.define('extjs.view.user.UserViewModel', {
 		}
 	},
 	data: {
-		grid_width: '100%',
+		userGridWidth: '100%',
 		loading: false,
 		addBtnCls: 'white x-fa fa-plus',
 		addUserOpen: false,
@@ -19,8 +19,8 @@ Ext.define('extjs.view.user.UserViewModel', {
 			var addUserOpen = get('addUserOpen');
 			return cls + (addUserOpen ? ' fa-times' : ' fa-plus');
 		},
-		grid_width: function (get) {
-			return get('addUserOpen') ? '60%' : '100%';
+		userGridWidth: function (get) {
+			return get('addUserOpen') ? '80%' : '100%';
 		}
 	}
 });

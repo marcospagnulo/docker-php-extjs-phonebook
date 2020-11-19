@@ -2,103 +2,115 @@ Ext.define('extjs.view.user.UserView', {
     extend: 'Ext.Container',
     xtype: 'userview',
     cls: 'userview',
-    layout: 'fit',
+    layout: 'hbox',
+    fullscreen: true,
     controller: { type: 'userviewcontroller' },
     viewModel: { type: 'userviewmodel' },
     requires: ['Ext.grid.rowedit.Plugin'],
     items: [
+        // Grid
         {
-            xtype: 'panel',
-            layout: 'fit',
+            xtype: 'grid',
+            reference: 'usergrid',
             docked: 'left',
-            bind: { width: '{grid_width}' },
-            items: [
+            bind: {
+                store: '{user}',
+                width: '{userGridWidth}'
+            },
+            plugins: {
+                rowedit: {
+                    autoConfirm: false,
+                    clicksToEdit: 1
+                },
+                pagingtoolbar: true
+            },
+            columns: [
                 {
-                    xtype: 'grid',
-                    reference: 'usergrid',
-                    bind: {
-                        store: '{user}'
-                    },
-                    plugins: {
-                        rowedit: {
-                            autoConfirm: false,
-                            clicksToEdit: 1
-                        },
-                        pagingtoolbar: true
-                    },
-                    columns: [
-                        {
-                            text: 'Id',
-                            dataIndex: 'id',
-                            editable: true,
-                            width: 100,
-                        },
-                        {
-                            text: 'Name',
-                            dataIndex: 'name',
-                            editable: true,
-                            width: 100,
-                        },
-                        {
-                            text: 'Surname',
-                            dataIndex: 'surname',
-                            editable: true,
-                            width: 100,
-                        },
-                        {
-                            text: 'Email',
-                            dataIndex: 'email',
-                            editable: true,
-                            width: 230
-                        },
-                        {
-                            text: 'Role',
-                            dataIndex: 'role',
-                            editable: true,
-                            width: 70
-                        },
-                        {
-                            cell: {
-                                xtype: 'widgetcell',
-                                widget: {
-                                    xtype: 'panel',
-                                    items: [
-                                        {
-                                            xtype: 'button',
-                                            iconCls: 'x-fa fa-trash',
-                                            handler: 'onDeleteClick'
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            iconCls: 'x-fa fa-edit',
-                                            handler: 'onEditClick'
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                    ],
-                    listeners: {
-                        edit: 'onEditComplete'
-                    }
+                    text: 'Id',
+                    dataIndex: 'id',
+                    editable: true,
+                    width: 50,
                 },
                 {
-                    xtype: 'button',
-                    ui: 'round',
-                    handler: 'onAddClick',
-                    cls: 'floating',
-                    bind: {
-                        iconCls: '{addBtnCls}'
-                    }
-                }
-            ]
+                    text: 'Name',
+                    dataIndex: 'name',
+                    editable: true,
+                    width: 100,
+                },
+                {
+                    text: 'Surname',
+                    dataIndex: 'surname',
+                    editable: true,
+                    width: 100,
+                },
+                {
+                    text: 'Email',
+                    dataIndex: 'email',
+                    editable: true,
+                    width: 230
+                },
+                {
+                    text: 'Phone',
+                    dataIndex: 'phone',
+                    editable: true,
+                    width: 230
+                },
+                {
+                    text: 'Address',
+                    dataIndex: 'address',
+                    editable: true,
+                    width: 230
+                },
+                {
+                    text: 'Role',
+                    dataIndex: 'role',
+                    editable: true,
+                    width: 60
+                },
+                {
+                    cell: {
+                        xtype: 'widgetcell',
+                        widget: {
+                            xtype: 'panel',
+                            items: [
+                                {
+                                    xtype: 'button',
+                                    iconCls: 'x-fa fa-trash',
+                                    handler: 'onDeleteClick'
+                                },
+                                {
+                                    xtype: 'button',
+                                    iconCls: 'x-fa fa-edit',
+                                    handler: 'onEditClick'
+                                }
+                            ]
+                        }
+                    },
+                    width: 64
+                },
+            ],
+            listeners: {
+                edit: 'onEditComplete'
+            }
         },
+        // Floating action
+        {
+            xtype: 'button',
+            docked: 'right',
+            cls: 'floating',
+            ui: 'round',
+            handler: 'onAddClick',
+            bind: {
+                iconCls: '{addBtnCls}'
+            }
+        },
+        // Add user form
         {
             xtype: 'formpanel',
             reference: 'form',
             layout: 'vbox',
-            width: '40%',
             docked: 'right',
+            width: '20%',
             modelValidation: true,
             items: [
                 {
