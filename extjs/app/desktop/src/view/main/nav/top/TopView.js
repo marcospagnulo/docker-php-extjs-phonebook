@@ -16,9 +16,9 @@ Ext.define('extjs.view.main.nav.top.TopView', {
                 items: [
                     {
                         xtype: 'container', 
-                        cls: 'topviewtext',
+                        cls: 'welcome',
                         bind: { 
-                            html: '{name}',
+                            html: '{welcomeText}',
                             hidden: '{navCollapsed}' 
                         }
                     },
@@ -33,13 +33,6 @@ Ext.define('extjs.view.main.nav.top.TopView', {
                         }
                     }
                 ]
-            },
-            {
-                cls: 'welcome',
-                bind: {
-                    html: '{welcomeText}',
-                    hidden: '{navCollapsed}'
-                }
             }
         ]
     }
