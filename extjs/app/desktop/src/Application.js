@@ -23,6 +23,9 @@ Ext.define('extjs.Application', {
 				this,
 				lastLogin
 			);
+		} else {
+			this.removeSplash();
+			Ext.Viewport.add([{xtype: 'loginview'}]);
 		}
 	},
 
@@ -34,7 +37,7 @@ Ext.define('extjs.Application', {
 
 	onLoginFailure: function(message){
 		this.removeSplash();
-		Ext.Viewport.add([{xtype: 'loginview'}])
+		Ext.Viewport.add([{xtype: 'loginview'}]);
         Ext.toast({message: message, timeout: 2000})
 	},
 
