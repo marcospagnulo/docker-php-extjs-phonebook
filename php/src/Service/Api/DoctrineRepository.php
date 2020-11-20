@@ -81,7 +81,7 @@ abstract class DoctrineRepository implements Repository {
         if(isset($sort)){
             $sortBy = "";
             foreach($sort as $s){
-                $sortBy = $sortBy === "" ? " ORDER BY e.".$s->property." ".$s->direction : ", e.".$s->property." "
+                $sortBy .= $sortBy === "" ? " ORDER BY e.".$s->property." ".$s->direction : ", e.".$s->property." "
                     .$s->direction;
             }
             $dql .= $sortBy;
