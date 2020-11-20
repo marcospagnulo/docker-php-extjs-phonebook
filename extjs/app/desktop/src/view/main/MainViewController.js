@@ -51,7 +51,7 @@ Ext.define('extjs.view.main.MainViewController', {
 			centerview.add({ xtype: xtype,  itemId: xtype, heading: node.get('text') });
 		}
 
-		centerview.setActiveItem(xtype);
+		//TODO: centerview.setActiveItem(xtype);
 		menuview.setSelection(node);
 		vm = this.getViewModel(); 
 		vm.set('heading', node.get('text'));
