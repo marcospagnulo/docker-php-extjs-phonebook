@@ -1,7 +1,11 @@
 Ext.define('extjs.Application', {
 	extend: 'Ext.app.Application',
 	name: 'extjs',
-	requires: ['extjs.*'],
+	requires: [
+		'extjs.*',
+		'Ext.grid.plugin.PagingToolbar',
+		'Ext.grid.Grid'
+	],
 	defaultToken: 'homeview',
 
 	removeSplash: function () {
