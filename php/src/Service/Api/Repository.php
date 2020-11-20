@@ -41,12 +41,13 @@ interface Repository {
     /**
      * Find entities with pagination
      *
-     * @param int $page  Number of page
-     * @param int $limit Number of results
+     * @param int   $page  Number of page
+     * @param int   $limit Number of results
+     * @param array $sort  Array containing properties and direction for sorting results
      *
      * @return mixed
      */
-    public function findAllWithPagination($page, $limit);
+    public function findAllWithPagination($page, $limit, $sort);
 
     /**
      * Count all the entities

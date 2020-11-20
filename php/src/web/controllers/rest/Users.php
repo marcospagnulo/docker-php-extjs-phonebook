@@ -83,9 +83,15 @@ class Users extends RestController {
 
         $page = $this->input->get('page');
         $limit = $this->input->get('limit');
+        $sortParam = $this->input->get('sort');
+        if(isset($sortParam)){
+            $sort = json_decode($sortParam);
+        } else {
+            $sort = null;
+        }
 
         if(isset($page) && isset($limit)){
-            $users = $this->repository->findAllWithPagination($page - 1, $limit);
+            $users = $this->repository->findAllWithPagination($page - 1, $limit, $sort);
             $count = $this->repository->count();
             echo json_encode([ "data" => $users, "count" => $count ]);
         } else {

@@ -66,16 +66,27 @@ abstract class DoctrineRepository implements Repository {
     /**
      * Find entities with pagination
      *
-     * @param int $page  Numner of page
-     * @param int $limit Number of results
+     * @param int   $page  Numner of page
+     * @param int   $limit Number of results
+     * @param array $sort  Array containing properties and directions for sorting results
      *
      * @return mixed|void
      */
-    public function findAllWithPagination($page, $limit){
+    public function findAllWithPagination($page, $limit, $sort){
 
         $first = $page * $limit;
         $class = $this->getEntityClass();
         $dql = 'SELECT e FROM ' . $class . ' e';
+
+        if(isset($sort)){
+            $sortBy = "";
+            foreach($sort as $s){
+                $sortBy = $sortBy === "" ? " ORDER BY e.".$s->property." ".$s->direction : ", e.".$s->property." "
+                    .$s->direction;
+            }
+            $dql .= $sortBy;
+        }
+
         return $this->entityManager->createQuery($dql)
                                    ->setFirstResult($first)
                                    ->setMaxResults($limit)

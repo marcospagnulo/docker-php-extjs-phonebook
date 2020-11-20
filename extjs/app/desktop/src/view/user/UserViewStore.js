@@ -6,5 +6,7 @@ Ext.define('extjs.view.user.UserViewStore', {
     proxy: {
         url: 'http://localhost:8080/rest/users',
         type: 'userproxy'
-    }
+    },
+    sortOnLoad: true,
+    remoteSort: true
 });
