@@ -3,7 +3,6 @@ Ext.define('extjs.view.user.UserView', {
     xtype: 'userview',
     cls: 'userview',
     layout: 'hbox',
-    fullscreen: true,
     controller: { type: 'userviewcontroller' },
     viewModel: { type: 'userviewmodel' },
     requires: ['Ext.grid.rowedit.Plugin'],

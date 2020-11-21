@@ -9,19 +9,21 @@ Ext.define('extjs.view.main.MainViewController', {
 	initViewModel: function(vm){
 		var user = App.util.State.get('user');
 		vm.set('user', user);
-	},
-	
-	init: function() {
 		this.getViewModel().getStore('menu').on({
 			load: 'onMenuDataLoad',
 			single: true,
 			scope: this
 		});
 	},
+	
+	init: function() {
+	},
 
 	onMenuDataLoad: function(store){
 		this.mainRoute(Ext.util.History.getHash());
 	},
+	
+	lastView: null,
 
 	mainRoute:function(xtype) {
 
@@ -31,27 +33,9 @@ Ext.define('extjs.view.main.MainViewController', {
 			exists = Ext.ClassManager.getByAlias('widget.' + xtype),
 			node, vm;
 
-		if (exists === undefined) {
-			console.log(xtype + ' does not exist');
-			return;
-		}
-
-		if(!this.getViewModel().getStore('menu')) {
-			console.log('Store not yet avalable from viewModel binding');
-			return;
-		}
-		
 		node = this.getViewModel().getStore('menu').findNode('xtype', xtype);
-
-		if (node == null) {
-			console.log('unmatchedRoute: ' + xtype);
-			return;
-		}
-		if (!centerview.getComponent(xtype)) {
-			centerview.add({ xtype: xtype,  itemId: xtype, heading: node.get('text') });
-		}
-
-		//TODO: centerview.setActiveItem(xtype);
+		
+		centerview.setActiveItem(this.lookup(xtype));
 		menuview.setSelection(node);
 		vm = this.getViewModel(); 
 		vm.set('heading', node.get('text'));

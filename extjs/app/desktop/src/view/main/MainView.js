@@ -13,6 +13,6 @@ Ext.define('extjs.view.main.MainView', {
         { xtype: 'navview',    reference: 'navview',    docked: 'left',   bind: {width:  '{navview_width}'}, listeners: { select: "onMenuViewSelectionChange", logout: "onLogout"} },
         { xtype: 'headerview', reference: 'headerview', docked: 'top',    bind: {height: '{headerview_height}'} },
         { xtype: 'centerview', reference: 'centerview' },
-        { xtype: 'detailview', reference: 'detailview', docked: 'right',  bind: {width:  '{detailview_width}'}  },
+        { xtype: 'detailview', reference: 'detailview', docked: 'right',  bind: {width:  '{detailview_width}'}  }
     ]
 });
