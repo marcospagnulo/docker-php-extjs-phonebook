@@ -11,6 +11,7 @@ Ext.define('extjs.view.user.UserView', {
         {
             xtype: 'grid',
             reference: 'usergrid',
+            cls: 'usergrid',
             docked: 'left',
             multiColumnSort:true,
             bind: {
