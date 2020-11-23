@@ -2,6 +2,7 @@
   "leaf": false,
   "children": [
     { "text": "Home", "iconCls": "x-fa fa-home", "xtype": "homeview", "leaf": true },
-    { "text": "Users", "iconCls": "x-fa fa-table", "xtype": "userview","leaf": true }
+    { "text": "Users", "iconCls": "x-fa fa-table", "xtype": "userview","leaf": true, "admin": true },
+    { "text": "Calendar", "iconCls": "x-fa fa-calendar", "xtype": "calendarview","leaf": true }
   ]
 }
